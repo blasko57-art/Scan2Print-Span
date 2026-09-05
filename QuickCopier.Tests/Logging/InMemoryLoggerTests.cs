@@ -25,7 +25,21 @@ public class InMemoryLoggerTests
         Assert.Equal("Hello from test.", entry.Message);
         Assert.Null(entry.Exception);
     }
+    [Fact]
+    public void Clear_RemovesAllEntries()
+    {
+        using var provider = new InMemoryLoggerProvider();
 
+        var logger = provider.CreateLogger("TestCategory");
+
+        logger.LogInformation("Test message.");
+
+        Assert.Single(provider.Entries);
+
+        provider.Clear();
+
+        Assert.Empty(provider.Entries);
+    }
     [Fact]
     public void Log_WithException_StoresException()
     {

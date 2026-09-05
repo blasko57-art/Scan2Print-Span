@@ -33,6 +33,15 @@ jobs:
       - name: Build
         run: dotnet build QuickCopier.slnx --configuration Release --no-restore
 
-      # Run the automated test suite.
+ # Run the   test suite (withouth building) and collect coverage from running tests 
       - name: Test
-        run: dotnet test QuickCopier.Tests/QuickCopier.Tests.csproj --configuration Release --no-build
+        run: dotnet test QuickCopier.Tests/QuickCopier.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage"
+
+
+    # Store the coverage report as a workflow artifact.
+    # go to a completed GitHub Actions run and download the generated coverage report.
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: QuickCopier.Tests/TestResults/**/coverage.cobertura.xml
