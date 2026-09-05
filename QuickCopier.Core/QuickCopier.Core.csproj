@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+   <!--
+      Linter /       Development-time analyzer.
+ (      PrivateAssets  to stop   analyzer from becoming a dependency of projects that reference this one )
+    -->
     <PackageReference Include="Meziantou.Analyzer" Version="3.0.203">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
