@@ -15,5 +15,21 @@ csharp_style_var_for_built_in_types = false:suggestion
 csharp_style_var_when_type_is_apparent = true:suggestion
 csharp_style_var_elsewhere = false:suggestion
 
-dotnet_diagnostic.IDE0005.severity = warning
-dotnet_diagnostic.IDE0055.severity = warning
+
+
+# MA0004  will be kept , 
+# but it is ok
+# my async methon is not async because it uses windows function that is sync
+
+# MA0011 is for Form.cs that is only Prototype of UI
+# actually in Logform.cs that should not ve shown often
+
+#  changed   rules for analyzer  
+
+dotnet_diagnostic.IDE0055.severity = warning # warning formating wrong 
+dotnet_diagnostic.IDE0005.severity = warning # warning unused imports 
+
+#  disabled  rules for analyzer  
+# not important the project's current project  coding/maintenance approach.
+dotnet_diagnostic.MA0026.severity = none # warning there is TODO in project 
+dotnet_diagnostic.MA0051.severity = none # warning method too log > 60

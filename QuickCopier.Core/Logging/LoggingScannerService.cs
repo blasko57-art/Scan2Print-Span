@@ -24,7 +24,7 @@ public sealed class LoggingScannerService : IScannerService
 
         try
         {
-            var scanners = await _inner.GetScannersAsync();
+            var scanners = await _inner.GetScannersAsync().ConfigureAwait(false);
 
             _logger.LogInformation(
                 "Scanner discovery completed. Found {Count} scanner(s).",
@@ -58,7 +58,7 @@ public sealed class LoggingScannerService : IScannerService
             var document =
                 await _inner.ScanAsync(
                     scanner,
-                    settings);
+                    settings).ConfigureAwait(false);
 
             _logger.LogInformation(
                 "Scan completed successfully. Scanner: {Scanner}",

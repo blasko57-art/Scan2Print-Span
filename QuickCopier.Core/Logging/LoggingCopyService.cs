@@ -35,7 +35,7 @@ public sealed class LoggingCopyService : ICopyService
                 scanner,
                 printer,
                 scanSettings,
-                printSettings);
+                printSettings).ConfigureAwait(false);
 
             _logger.LogInformation(
                    "Copy completed successfully. Scanner: {Scanner}, Printer: {Printer}",

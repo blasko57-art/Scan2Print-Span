@@ -55,7 +55,7 @@ public sealed class LoggingPrinterService : IPrinterService
             await _inner.PrintAsync(
                 printer,
                 document,
-                settings);
+                settings).ConfigureAwait(false);
 
             _logger.LogInformation(
                 "Print job submitted successfully. Printer: {Printer}",
