@@ -1,0 +1,38 @@
+name: CI
+
+# when to un CI ( when  code is pushed to main or a pull request targets main.)
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    # Windows is required because the project uses Windows-specific scanner and printer functionality.
+    runs-on: windows-latest
+#steps of the Ci/CD pileline
+    steps:
+      # Download the repository contents into the GitHub Actions runner.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Install the .NET SDK required by the solution.
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      # Restore NuGet dependencies (path to .slnx with them)
+      - name: Restore
+        run: dotnet restore QuickCopier.slnx
+
+      # Build in Release mode and run the build 
+      - name: Build
+        run: dotnet build QuickCopier.slnx --configuration Release --no-restore
+
+      # Run the automated test suite.
+      - name: Test
+        run: dotnet test QuickCopier.Tests/QuickCopier.Tests.csproj --configuration Release --no-build
