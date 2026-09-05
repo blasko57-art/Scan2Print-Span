@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="QuickCopier.App/QuickCopier.App.csproj" />
+  <Project Path="QuickCopier.Core/QuickCopier.Core.csproj" />
+  <Project Path="QuickCopier.Tests/QuickCopier.Tests.csproj" />
+  <Project Path="QuickCopier.Windows/QuickCopier.Windows.csproj" />
+</Solution>
