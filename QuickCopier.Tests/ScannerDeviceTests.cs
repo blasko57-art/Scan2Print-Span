@@ -35,4 +35,15 @@ public class ScannerDeviceTests
         Assert.Equal("scanner-123", scanner.Id);
         Assert.Equal("Test Scanner", scanner.Name);
     }
+
+    [Fact]
+    public void DefaultValues_AreEmptyStrings()
+    {
+        // Arrange
+        var scanner = new ScannerDevice();
+
+        // Assert
+        Assert.Equal(string.Empty, scanner.Id);
+        Assert.Equal(string.Empty, scanner.Name);
+    }
 }

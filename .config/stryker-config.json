@@ -1,0 +1,21 @@
+{
+  "stryker-config": {
+    "project": "QuickCopier.Core\\QuickCopier.Core.csproj",
+    "test-projects": [
+      "QuickCopier.Tests\\QuickCopier.Tests.csproj"
+    ],
+    "concurrency": 2,
+    "mutation-level": "Standard",
+    "coverage-analysis": "perTest",
+    "additional-timeout": 5000,
+    "verbosity": "info",
+    "reporters": [
+      "Progress",
+      "Html",
+      "Json"
+    ],
+    "ignore-methods": [
+      "ConfigureAwait"
+    ]
+  }
+}

@@ -46,12 +46,12 @@ public class LoggingScannerServiceTests
         Assert.Contains(
             entries,
             e => e.Level == LogLevel.Information &&
-                 e.Message.Contains("Scan started"));
+                 e.Message.Contains("Scan started. Scanner: Test Scanner"));
 
         Assert.Contains(
             entries,
             e => e.Level == LogLevel.Information &&
-                 e.Message.Contains("Scan completed successfully"));
+                 e.Message.Contains("Scan completed successfully. Scanner: Test Scanner"));
     }
 
     [Fact]
@@ -93,8 +93,68 @@ public class LoggingScannerServiceTests
 
 
 
-        Assert.Contains("Scan failed", error.Message);
+        Assert.Contains("Scan failed. Scanner: Test Scanner", error.Message);
         Assert.NotNull(error.Exception);
+    }
+    [Fact]
+    public async Task ScanAsync_WhenScannerIsNull_ThrowsArgumentNullException()
+    {
+        using var provider = new InMemoryLoggerProvider();
+
+        using var loggerFactory =
+            LoggerFactory.Create(builder =>
+            {
+                builder.ClearProviders();
+                builder.AddProvider(provider);
+            });
+
+        var inner = new FakeScannerService();
+
+        var logger =
+            loggerFactory.CreateLogger<LoggingScannerService>();
+
+        var service =
+            new LoggingScannerService(inner, logger);
+
+        await Assert.ThrowsAsync<ArgumentNullException>(() =>
+            service.ScanAsync(
+                null!,
+                new ScanSettings()));
+    }
+
+    [Fact]
+    public async Task ScanAsync_WhenSettingsAreNull_ThrowsArgumentNullException()
+    {
+        // Arrange
+        using var provider = new InMemoryLoggerProvider();
+
+        using var loggerFactory =
+            LoggerFactory.Create(builder =>
+            {
+                builder.ClearProviders();
+                builder.AddProvider(provider);
+            });
+
+        var logger =
+            loggerFactory.CreateLogger<LoggingScannerService>();
+
+        var service =
+            new LoggingScannerService(
+                new FakeScannerService(),
+                logger);
+
+        var scanner = new ScannerDevice
+        {
+            Id = "scanner-1",
+            Name = "Test Scanner"
+        };
+
+        // Act & Assert
+        await Assert.ThrowsAsync<ArgumentNullException>(
+            () =>
+                service.ScanAsync(
+                    scanner,
+                    null!));
     }
 
     private sealed class FakeScannerService : IScannerService
@@ -131,4 +191,6 @@ public class LoggingScannerServiceTests
                 "Test scanner failure.");
         }
     }
+
+
 }
