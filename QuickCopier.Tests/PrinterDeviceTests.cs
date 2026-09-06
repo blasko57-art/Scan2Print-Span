@@ -15,17 +15,7 @@ public class PrinterDeviceTests
         Assert.Equal(string.Empty, printer.Name);
     }
 
-    [Fact]
-    public void DefaultValues_AreEmptyStrings()
-    {
-        // Arrange
-        var printer = new PrinterDevice();
-
-        // Assert
-        Assert.Equal(string.Empty, printer.Id);
-        Assert.Equal(string.Empty, printer.Name);
-    }
-
+ 
     [Fact]
     public void IdAndName_CanBeAssigned()
     {

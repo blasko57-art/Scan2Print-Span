@@ -41,13 +41,13 @@ public class LoggingPrinterServiceTests
             entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message == "Printer discovery started.");
+                string.Equals(entry.Message, "Printer discovery started.", StringComparison.Ordinal));
 
         Assert.Contains(
             entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message == "Printer discovery completed. Found 1 printer(s).");
+                string.Equals(entry.Message, "Printer discovery completed. Found 1 printer(s).", StringComparison.Ordinal));
     }
 
     [Fact]
@@ -130,15 +130,14 @@ public class LoggingPrinterServiceTests
             entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message ==
-                    "Print started. Printer: Test Printer");
-
+                string.Equals(entry.Message,
+                                    "Print started. Printer: Test Printer", StringComparison.Ordinal));
         Assert.Contains(
             entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message ==
-                    "Print job submitted successfully. Printer: Test Printer");
+                string.Equals(entry.Message,
+                    "Print job submitted successfully. Printer: Test Printer", StringComparison.Ordinal));
     }
 
     [Fact]

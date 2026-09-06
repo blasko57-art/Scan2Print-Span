@@ -5,7 +5,7 @@ namespace QuickCopier.Windows.Scanning;
 
 public sealed class WindowsScannerCapabilities
 {
-    public string Inspect(string scannerId)
+    public string Inspect(string scannerId) //TODO change to static maybe 
     {
         // null check
         // ID format is determined by WIA/NAPS2

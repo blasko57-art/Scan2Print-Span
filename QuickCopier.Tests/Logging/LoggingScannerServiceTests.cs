@@ -33,8 +33,8 @@ public class LoggingScannerServiceTests
             Name = "Test Scanner"
         };
 
-        //await using var _ = Task.CompletedTask as IAsyncDisposable;
-        //unnecessary
+        // await using var _ = Task.CompletedTask as IAsyncDisposable;
+        // unnecessary
 
         using var document =
             await service.ScanAsync(
@@ -46,12 +46,14 @@ public class LoggingScannerServiceTests
         Assert.Contains(
             entries,
             e => e.Level == LogLevel.Information &&
-                 e.Message.Contains("Scan started. Scanner: Test Scanner"));
+                 e.Message.Contains("Scan started. Scanner: Test Scanner",
+    StringComparison.Ordinal));
 
         Assert.Contains(
             entries,
             e => e.Level == LogLevel.Information &&
-                 e.Message.Contains("Scan completed successfully. Scanner: Test Scanner"));
+                 e.Message.Contains("Scan completed successfully. Scanner: Test Scanner",
+    StringComparison.Ordinal));
     }
 
     [Fact]
@@ -93,7 +95,8 @@ public class LoggingScannerServiceTests
 
 
 
-        Assert.Contains("Scan failed. Scanner: Test Scanner", error.Message);
+        Assert.Contains("Scan failed. Scanner: Test Scanner", error.Message,
+    StringComparison.Ordinal);
         Assert.NotNull(error.Exception);
     }
     [Fact]

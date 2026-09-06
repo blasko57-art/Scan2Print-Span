@@ -45,15 +45,15 @@ public class LoggingCopyServiceTests
             provider.Entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message.StartsWith("Copy started."));
+                entry.Message.StartsWith("Copy started.",
+    StringComparison.Ordinal));
 
         Assert.Contains(
             provider.Entries,
             entry =>
                 entry.Level == LogLevel.Information &&
-                entry.Message ==
-                    "Copy completed successfully. Scanner: Test Scanner, Printer: Test Printer");
-
+                string.Equals(entry.Message,
+                    "Copy completed successfully. Scanner: Test Scanner, Printer: Test Printer",  StringComparison.Ordinal));
     }
 
     [Fact]

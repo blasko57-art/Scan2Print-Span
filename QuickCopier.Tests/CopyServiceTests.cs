@@ -82,7 +82,7 @@ public class CopyServiceTests
         Assert.NotNull(scannerService.Document);
 
         Assert.Throws<ObjectDisposedException>(
-            () => scannerService.Document!.Data.ReadByte());
+            () => scannerService.Document.Data.ReadByte());
     }
 
     [Fact]
@@ -112,7 +112,7 @@ public class CopyServiceTests
         Assert.NotNull(scannerService.Document);
 
         Assert.Throws<ObjectDisposedException>(
-            () => scannerService.Document!.Data.ReadByte());
+            () => scannerService.Document.Data.ReadByte());
     }
 
     [Fact]

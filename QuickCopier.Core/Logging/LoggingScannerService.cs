@@ -47,8 +47,8 @@ public sealed class LoggingScannerService : IScannerService
         ScanSettings settings)
     {
         // if someone called await service.ScanAsync(null!, settings);
-    ArgumentNullException.ThrowIfNull(scanner);
-    ArgumentNullException.ThrowIfNull(settings);
+        ArgumentNullException.ThrowIfNull(scanner);
+        ArgumentNullException.ThrowIfNull(settings);
         _logger.LogInformation(
             "Scan started. Scanner: {Scanner}",
             scanner.Name);
