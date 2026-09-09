@@ -7,6 +7,16 @@ using QuickCopier.Core.Services;
 using QuickCopier.Windows.Printing;
 using QuickCopier.Windows.Scanning;
 
+using QuickCopier.App.UI.Devices;
+using QuickCopier.App.UI.Actions;
+using QuickCopier.App.UI.Status;
+using QuickCopier.App.State;
+
+using QuickCopier.App.Workflows;
+
+
+
+
 namespace QuickCopier.App;
 
 static class Program
@@ -52,6 +62,8 @@ static class Program
                     serviceProvider.GetRequiredService<WindowsScannerService>(),
                     serviceProvider.GetRequiredService<
                         ILogger<LoggingScannerService>>()));
+            services.AddSingleton<IScannerCapabilities, WindowsScannerCapabilities>();
+
 
             // ----------------------------------------
             // Printer
@@ -66,7 +78,7 @@ static class Program
                     serviceProvider.GetRequiredService<
                         ILogger<LoggingPrinterService>>()));
 
-                        // ----------------------------------------
+            // ----------------------------------------
             // Copy
             // ----------------------------------------
 
@@ -80,12 +92,28 @@ static class Program
                     serviceProvider.GetRequiredService<
                         ILogger<LoggingCopyService>>()));
 
+
+
+
             // ----------------------------------------
             // Forms
             // ----------------------------------------
 
             services.AddTransient<Form1>();
+            // UI
+            services.AddTransient<ScannerPanel>();
+            services.AddTransient<PrinterPanel>();
+            services.AddTransient<CopyActionsPanel>();
+            services.AddTransient<StatusPanel>();
+
+            services.AddTransient<DocumentWorkflow>();
+            services.AddSingleton<DocumentState>();
+
+
+
+
             services.AddTransient<LogsForm>();
+
 
             // ----------------------------------------
             // Start application
