@@ -120,7 +120,11 @@ static class Program
             // ----------------------------------------
 
             using var serviceProvider =
-                services.BuildServiceProvider();
+            services.BuildServiceProvider(new ServiceProviderOptions
+            {
+                ValidateOnBuild = true,
+                ValidateScopes = true
+            }); // configuration errors fail at startup rather than later when some service is first requested.
 
             var form =
                 serviceProvider.GetRequiredService<Form1>();
