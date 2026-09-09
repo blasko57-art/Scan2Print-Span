@@ -1,9 +1,13 @@
 using System.Text;
 using NAPS2.Wia;
 
+using QuickCopier.Core.Interfaces;
+
+
+
 namespace QuickCopier.Windows.Scanning;
 
-public sealed class WindowsScannerCapabilities
+public sealed class WindowsScannerCapabilities : IScannerCapabilities
 {
     public string Inspect(string scannerId) //TODO change to static maybe 
     {

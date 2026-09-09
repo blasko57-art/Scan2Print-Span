@@ -3,6 +3,8 @@ namespace QuickCopier.Core.Models;
 // default settings (not hardcoded)
 public class ScanSettings
 {
+    // TODO make WindowsScannerService.ScanAsync() use those settings
+    // for now just defaults 
     public int Dpi { get; set; } = 300;
 
     public string ColorMode { get; set; } = "Color";

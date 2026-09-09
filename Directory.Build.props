@@ -1,0 +1,46 @@
+<Project>
+ <!--Description  -  Shared development-time analyzers for all projects ,
+ For Sonarcube and othert code analyzers 
+those were removed from all .csproj files 
+Keeping them here avoids repeating analyzer references in every .csproj file
+(for cleaner architecture)
+
+ -->
+ <!-- xUnit Analyzer  is only for tests !  so do not put it here -->
+
+  <ItemGroup>
+  <PackageReference Include="SonarAnalyzer.CSharp" Version="10.33.0.1635">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
+
+<PackageReference Include="Meziantou.Analyzer" Version="3.0.203">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
+
+<!-- Roslynator -->
+<PackageReference Include="Roslynator.Analyzers" Version="5.0.0">
+  <PrivateAssets>all</PrivateAssets>
+  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+</PackageReference>
+
+  </ItemGroup>
+  <!-- IDisposable / resource lifetime analysis, skips tests folder
+  too many warnings for code that works rigt (like logging decorators ) and async await in tests  -->
+
+<ItemGroup Condition="'$(MSBuildProjectName)' != 'QuickCopier.Tests' and '$(MSBuildProjectName)' != 'QuickCopier.App' " >
+ <PackageReference Include="IDisposableAnalyzers" Version="4.0.8">
+    <PrivateAssets>all</PrivateAssets>
+    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+  </PackageReference>
+
+</ItemGroup>
+
+<!--
+<PropertyGroup>  temp disable  
+  <NoWarn>$(NoWarn);SA*</NoWarn>
+</PropertyGroup>
+-->
+
+</Project>

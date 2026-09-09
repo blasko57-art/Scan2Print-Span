@@ -33,3 +33,25 @@ dotnet_diagnostic.IDE0005.severity = warning # warning unused imports
 # not important the project's current project  coding/maintenance approach.
 dotnet_diagnostic.MA0026.severity = none # warning there is TODO in project 
 dotnet_diagnostic.MA0051.severity = none # warning method too log > 60
+
+
+# for sonar 
+[*.cs]
+dotnet_diagnostic.S125.severity = none # warningremove this commented out code
+[QuickCopier.Core/Logging/*.cs] # changed for all those files
+dotnet_diagnostic.S2139.severity = none # it is expected behavious if ogging is made with decorator
+# warning Either log this exception and handle it, or rethrow it with some contextual information.
+
+# for other
+[*.cs]
+dotnet_diagnostic.SA1413.severity = none # warning ttrailing coma missing
+dotnet_diagnostic.SA1101.severity = none # warning  pure formating ScanWasCalled = true; sould be this.ScanWasCalled = true;
+
+[*.cs]
+# Temporarily disable all StyleCop rules
+dotnet_analyzer_diagnostic.category-StyleCop.severity = none
+
+[QuickCopier.App/Form1.cs] #
+dotnet_analyzer_diagnostic.category-IDisposableAnalyzers.severity = none
+
+

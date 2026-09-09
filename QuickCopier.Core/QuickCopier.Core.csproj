@@ -7,18 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-   <!--  mpved to -props file 
-      Linter /       Development-time analyzer.
- (      PrivateAssets  to stop   analyzer from becoming a dependency of projects that reference this one )
-  
-    <PackageReference Include="Meziantou.Analyzer" Version="3.0.203">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="10.33.0.1635">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>  -->
+   <!--  analyters packages moved  to -props file  -->
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.11" />
 
 

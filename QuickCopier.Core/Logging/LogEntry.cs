@@ -1,8 +1,9 @@
 using Microsoft.Extensions.Logging;
 
 namespace QuickCopier.Core.Logging;
-//Core should contain   application/domain abstractions and business logic.
-// logging should be moved to App probably, but for now it can stay here...
+// logging could  be moved to App (convention) ,
+//  but it is only convention and i want it here 
+// (ie Core should contain   application/domain abstractions and business logic.) 
 
 
 public sealed record LogEntry(

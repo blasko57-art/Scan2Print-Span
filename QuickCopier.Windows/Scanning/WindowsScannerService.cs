@@ -120,13 +120,13 @@ WIA_DIP_DEV_TYPE  = 5
                 throw new InvalidOperationException(
                     "Scanner transfer was cancelled.");
             }
-
-            if (false) // in case you want to prevent scanning of multiple pages (no real reason to )
+            // for future, t to prevent scanning of multiple pages ( only one page scanning allowed now )
+            /*          if (pagesNum > 1)
             {
                 throw new InvalidOperationException(
-                    "The scanner returned multiple pages, but only one page is supported.");
+                    "This shouldnt have happen The scanner returned multiple pages, but only one page is supported.");
             }
-
+*/
             if (scannedData is null)
             {
                 throw new InvalidOperationException(
